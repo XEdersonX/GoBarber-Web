@@ -24,9 +24,9 @@ const SignIn: React.FC = () => {
 
   console.log(formRef);
 
-  const { signIn } = useContext(AuthContext); // Obter informacao do nosso context
+  const { user, signIn } = useContext(AuthContext); // Obter informacao do nosso context
 
-  // console.log(name);
+  console.log(user);
 
   // Utiliza o useCallback quando vai criar uma funcao dentro de um componente
   const handleSubmit = useCallback(
