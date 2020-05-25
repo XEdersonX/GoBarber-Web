@@ -1,10 +1,10 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -22,11 +22,12 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  console.log(formRef);
+  // console.log(formRef);
 
-  const { user, signIn } = useContext(AuthContext); // Obter informacao do nosso context
+  // const { user, signIn } = useContext(AuthContext); // Obter informacao do nosso context
+  const { signIn } = useAuth(); // Obter informacao do nosso context
 
-  console.log(user);
+  // console.log(user);
 
   // Utiliza o useCallback quando vai criar uma funcao dentro de um componente
   const handleSubmit = useCallback(
