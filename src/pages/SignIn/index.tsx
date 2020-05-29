@@ -53,11 +53,14 @@ const SignIn: React.FC = () => {
         });
       } catch (err) {
         console.log(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        const errors = getValidationErrors(err);
+          // Este ponto de interrogacao serve para ver se esta variavel exite pra depois chamar o setErrros.
+          formRef.current?.setErrors(errors);
+        }
 
-        // Este ponto de interrogacao serve para ver se esta variavel exite pra depois chamar o setErrros.
-        formRef.current?.setErrors(errors);
+        // disparar um toast
       }
     },
     [signIn],
