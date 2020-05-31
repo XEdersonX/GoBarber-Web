@@ -12,6 +12,7 @@ import { Container } from './styles';
 
 interface ToastProps {
   message: ToastMessage;
+  style: object;
 }
 
 // Criando um objeto icons
@@ -21,7 +22,7 @@ const icons = {
   success: <FiCheckCircle size={24} />,
 };
 
-const Toast: React.FC<ToastProps> = ({ message }) => {
+const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
 
   // Para disparar uma acao assim que este componente for exibindo em tela. QWuando novo toast for adicionado em tela.
@@ -37,7 +38,11 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   }, [removeToast, message.id]);
 
   return (
-    <Container type={message.type} hasDescription={!!message.description}>
+    <Container
+      type={message.type}
+      hasDescription={!!message.description}
+      style={style}
+    >
       {/* Botamos info como padrao, ja que propriedade type nao obrigatoria. Se ela nao tiver presente, vai ir o info como padrao. */}
       {icons[message.type || 'info']}
 
