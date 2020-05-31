@@ -4,18 +4,15 @@ import SignIn from './pages/SignIn';
 // import SignUp from './pages/SignUp';
 import GlobalStyle from './styles/global';
 
-import ToastContainer from './components/ToastContainer';
-import { AuthProvider } from './hooks/AuthContext';
+import AppProvider from './hooks';
 
 const App: React.FC = () => (
   // Fragmet    jsx
   <>
     {/* //passa variael global para toda aplicacao */}
-    <AuthProvider>
+    <AppProvider>
       <SignIn />
-    </AuthProvider>
-
-    <ToastContainer />
+    </AppProvider>
 
     <GlobalStyle />
   </>

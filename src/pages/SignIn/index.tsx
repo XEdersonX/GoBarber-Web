@@ -4,7 +4,8 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -26,6 +27,7 @@ const SignIn: React.FC = () => {
 
   // const { user, signIn } = useContext(AuthContext); // Obter informacao do nosso context
   const { signIn } = useAuth(); // Obter informacao do nosso context
+  const { addToast } = useToast();
 
   // console.log(user);
 
@@ -47,7 +49,7 @@ const SignIn: React.FC = () => {
           abortEarly: false, // esta propriedade vai retornar todos os erros que ele encontrar e nao so o primeiro erro.
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
@@ -61,9 +63,10 @@ const SignIn: React.FC = () => {
         }
 
         // disparar um toast
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
